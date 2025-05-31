@@ -1,0 +1,67 @@
+seed: 0
+device: "cuda:0"
+resume: True
+client_path: "~/petreloss.conf"
+
+ground_truth: "era5_1440"
+
+observation:
+  type: "simulation" # "gdas"
+  config: "config/assimilation_loop/observation/fixed_1000_1440.yaml"
+
+forecast:
+  forecast_model:
+    name: "fengwu_hr_6h" # "fengwu_lr"
+    config: "config/assimilation_loop/forecast_model/model_0.25degree_6h.yaml"
+    checkpoint: "/mnt/petrelfs/xiaoyi/projects/fengwu-hr/output/model/model_0.25degree/checkpoint_latest.pth"
+    mean_std: "checkpoints/model_mean_std.json"
+  ensemble_gen:
+    dynamic_member: 8 # 1~12
+    history_member: 0
+
+da_method: 
+  framework:
+    type: "vae" # "no_da" # "vae" # "gaussian"
+    config: "config/assimilation_loop/assimilation_models/vae_var_notune_fengwu_interp_nit2.yaml"
+  observation_operator:
+    type: "identity" # "pressure_level_interpolation"
+    err_cov_type: "predefined"
+    general_mean_std: "checkpoints/model_mean_std.json"
+    err_std: 0.01
+    modify_type: "modify_temperature" # "no_modify" # "modify_temperature"
+  flow_model:
+    type: "hr2hr" # "none" # "hr2hr"
+    params: "config/assimilation_loop/forecast_model/model_0.25degree_1h.yaml"
+    checkpoint: "/mnt/petrelfs/xiaoyi/projects/fengwu-hr/output/model/world_size8-lgunet_alldata_13level_1hour_model_1inp/checkpoint_best.pth"
+    model_mean_std: "checkpoints/model_mean_std.json"
+    err_type: 1
+    err_dim: 
+      - 69
+      - 721
+      - 1440
+
+start_time: "2022-01-01 00:00:00"
+end_time: "2022-02-01 00:00:00"
+cycle_time: "6H"
+flow_cycle_time: "1H"
+da_win: 1 # 1~6
+
+initial_states:
+  type: "time_lagging"
+  config: "config/assimilation_loop/initial_states/tl_gap8_step6h_ens1.yaml"
+
+save:
+  field:
+    analysis: false
+    observation: false
+    ground_truth: false
+    path_config: 
+      type: "s3_bucket" # "local"
+      path: "cluster2:s3://global_data_assimilation_raw/xiaoyi"
+
+  eval_results:
+    metrics_list:
+      - "bg_wrmse"
+      - "bg_bias"
+      - "ana_wrmse"
+      - "ana_bias"

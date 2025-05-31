@@ -1,0 +1,5 @@
+density: 1000
+sampling: "fixed" # "fixed"
+mask_path: "checkpoints/observation_masks/mask_fixed_column_0001.npy"
+add_noise: False
+noise_level: 0

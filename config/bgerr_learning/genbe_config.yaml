@@ -1,0 +1,6 @@
+type: "genbe"
+error_sample_path: "cluster2:s3://global_data_assimilation_raw/nmc_error_samples/ref_sample_20151101_20151231.npy"
+
+output_path: "checkpoints/bgerr_models/genbe/my_bmatrix"
+lat: 128
+lon: 256

@@ -1,0 +1,12 @@
+type: "vae"
+device: "cuda"
+
+fengwu_config: "config/assimilation_loop/forecast_model/model_1.40degree_6h.yaml"
+fengwu_checkpoint: "/mnt/petrelfs/xiaoyi/projects/fengwu-lite/output/model/world_size8-model-37years-stride6-circle/checkpoint_best.pth"
+vae_parameter_group: "config/bgerr_learning/vae/parameters0.yaml"
+error_std_path: "checkpoints/err_std.json"
+length: 5
+sigma: 2.0
+batch_size: 4
+epoch: 20
+learning_rate: 0.0001

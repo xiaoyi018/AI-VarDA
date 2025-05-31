@@ -1,0 +1,17 @@
+nlat_in: 128
+nlon_in: 256
+nchn_in: 32
+niter: 2
+maxiter: 10
+bg_lamb: 400.0
+
+nlat_out: 721
+nlon_out: 1440
+nchn_out: 69
+
+param_path: "config/assimilation_loop/bgerr_models/vae/parameters0.yaml"
+checkpoint: "checkpoints/bgerr_models/vae/parameters0/vae_parameters0_old_sigma2.00_epoch4_19790101_20151231_finetuned.pt"
+err_std: "checkpoints/bgerr_models/vae/parameters0/err_std.json"
+model_mean_std: "checkpoints/model_mean_std.json"
+
+finetune_type: "no_tune"

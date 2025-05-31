@@ -1,0 +1,19 @@
+nlat_in: 128
+nlon_in: 256
+nchn_in: 69
+niter: 4
+maxiter: 5
+bg_lamb: 1.0
+
+coeff_dyn: 0.0
+
+nlat_out: 721
+nlon_out: 1440
+nchn_out: 69
+nlevel: 13
+
+radius: 111195
+hpad: 112
+magnify: 11
+scale_factor: 0.4
+bmatrix_path: "checkpoints/bgerr_models/genbe/fengwu_interp_1"

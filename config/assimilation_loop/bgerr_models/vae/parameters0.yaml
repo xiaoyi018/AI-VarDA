@@ -1,0 +1,96 @@
+encoder:
+  img_size:
+  - 128
+  - 256
+  patch_size:
+  - 2
+  - 2
+  stride:
+  - 2
+  - 2
+  inchans_list:
+  - 4
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  outchans_list:
+  - 4
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  in_chans: 138
+  out_chans: 138
+  enc_dim: 96
+  embed_dim: 1152
+  window_size: 4
+  enc_depths:
+  - 2
+  - 2
+  enc_heads:
+  - 3
+  - 6
+  lg_depths:
+  - 4
+  - 4
+  - 4
+  lg_heads:
+  - 6
+  - 6
+  - 6
+  Weather_T: 1
+  drop_path: 0.0
+  use_checkpoint: false
+  inp_length: 1
+  use_mlp: false
+decoder:
+  img_size:
+  - 128
+  - 256
+  patch_size:
+  - 2
+  - 2
+  stride:
+  - 2
+  - 2
+  inchans_list:
+  - 2
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  outchans_list:
+  - 4
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  in_chans: 138
+  out_chans: 138
+  enc_dim: 96
+  embed_dim: 1152
+  window_size: 4
+  enc_depths:
+  - 2
+  - 2
+  enc_heads:
+  - 3
+  - 6
+  lg_depths:
+  - 4
+  - 4
+  - 4
+  lg_heads:
+  - 6
+  - 6
+  - 6
+  Weather_T: 1
+  drop_path: 0.0
+  use_checkpoint: false
+  inp_length: 1
+  use_mlp: false

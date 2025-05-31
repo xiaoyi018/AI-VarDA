@@ -1,0 +1,179 @@
+tensor_model_parallel_size: 1
+pipeline_model_parallel_size: 1
+resume: false
+resume_from_config: false
+seed: 0
+cuda: 0
+world_size: 8
+per_cpus: 4
+init_method: tcp://10.140.24.23:27515
+outdir: /mnt/petrelfs/chenkang/code/wpredict/IF_WKP/lgunet_alldata_13level_1hour_model
+cfg: ./configs/era5/lgunet_alldata_13level_1hour_model.yaml
+desc: lgunet_alldata_13level_1hour_model_1inp
+rank: 0
+local_rank: 0
+distributed: true
+dist_backend: nccl
+relative_checkpoint_dir: lgunet_alldata_13level_1hour_model/world_size8-lgunet_alldata_13level_1hour_model_1inp
+era5:
+  type: era5_npy_f32
+  data_dir: era5_new:s3://era5_np_float32
+  length: 2
+  file_stride: 1
+  sample_stride: 1
+  years: &id001
+    train:
+    - '1979-01-01 00:00:00'
+    - '2017-12-31 23:00:00'
+    valid:
+    - '2018-01-01 00:00:00'
+    - '2018-12-31 23:00:00'
+    test:
+    - '2018-01-01 00:00:00'
+    - '2018-12-31 23:00:00'
+    all:
+    - '1979-01-01 00:00:00'
+    - '2020-12-31 23:00:00'
+  vnames: &id002
+    constants: []
+    single_level_vnames:
+    - u10
+    - v10
+    - t2m
+    - msl
+    multi_level_vnames:
+    - z
+    - q
+    - u
+    - v
+    - t
+    hight_level_list:
+    - 50
+    - 100
+    - 150
+    - 200
+    - 250
+    - 300
+    - 400
+    - 500
+    - 600
+    - 700
+    - 850
+    - 925
+    - 1000
+model:
+  type: mts2d_model
+  params:
+    sub_model:
+      lgunet_all:
+        img_size:
+        - 721
+        - 1440
+        patch_size:
+        - 3
+        - 2
+        stride:
+        - 2
+        - 2
+        inchans_list:
+        - 4
+        - 13
+        - 13
+        - 13
+        - 13
+        - 13
+        outchans_list:
+        - 8
+        - 26
+        - 26
+        - 26
+        - 26
+        - 26
+        in_chans: 69
+        out_chans: 138
+        enc_dim: 96
+        embed_dim: 1152
+        window_size:
+        - 6
+        - 12
+        enc_depths:
+        - 2
+        - 2
+        - 2
+        enc_heads:
+        - 3
+        - 6
+        - 6
+        lg_depths:
+        - 4
+        - 4
+        - 4
+        lg_heads:
+        - 6
+        - 6
+        - 6
+        Weather_T: 1
+        drop_path: 0.0
+        use_checkpoint: true
+        inp_length: 1
+        use_mlp: false
+    use_ceph: true
+    save_best: Possloss
+    metrics_list:
+    - MAE
+    - MSE
+    use_fsdp: false
+    optimizer:
+      lgunet_all:
+        type: AdamW
+        params:
+          lr: 0.0005
+          betas:
+          - 0.9
+          - 0.9
+    lr_scheduler:
+      lgunet_all:
+        by_step: true
+        sched: cosine
+        epochs: 2
+        min_lr: 0.0
+        warmup_lr: 1.0e-08
+        warmup_epochs: 0
+        lr_noise: null
+        cooldown_epochs: 0
+    extra_params:
+      two_step_training: false
+      loss_type: Possloss
+      enabled_amp: false
+      use_noise: false
+      weight_begin_index: 4
+      weight_end_index: 17
+      weight_number: 0.1
+      checkpoint_dir: era5:s3://weatherbench/checkpoint
+    constants_len: 0
+dataset:
+  train:
+    type: era5_npy_f32
+    data_dir: era5_new:s3://era5_np_float32
+    length: 2
+    file_stride: 1
+    sample_stride: 1
+    years: *id001
+    vnames: *id002
+  test:
+    type: era5_npy_f32
+    data_dir: era5_new:s3://era5_np_float32
+    length: 2
+    file_stride: 1
+    sample_stride: 1
+    years: *id001
+    vnames: *id002
+dataloader:
+  num_workers: 4
+  pin_memory: false
+  prefetch_factor: 2
+  persistent_workers: true
+trainer:
+  batch_size: 1
+  test_batch_size: 1
+  max_epoch: 2

@@ -1,0 +1,5 @@
+density: 1000
+sampling: "random" # "fixed"
+mask_path: ""
+add_noise: False
+noise_level: 0
