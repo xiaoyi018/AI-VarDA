@@ -200,7 +200,7 @@ We are actively developing and expanding the framework. Below is a roadmap of pl
 -  **Implement additional traditional DA algorithms**
    Including hybrid EnKF-Var, weak-constraint 4DVar, and flow-dependent covariance models.
 -  **Integrate with recent AI-based assimilation methods**
-   Coupling with models like [DiffDA](https://arxiv.org/abs/2305.15415), [APPA](https://arxiv.org/abs/2312.03033), and other diffusion-based or neural inverse solvers.
+   Coupling with models like [DiffDA](https://arxiv.org/abs/2401.05932), [APPA](https://arxiv.org/abs/2504.18720), and other diffusion-based or neural inverse solvers.
 -  **Assimilation of satellite and radar observations**
    Building generalized observation operators and preprocessing pipelines for satellite radiances and radar reflectivity.
 
