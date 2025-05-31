@@ -9,7 +9,7 @@ This framework builds on our recent works, [FengWu-4DVar](https://openreview.net
 - ✅ **Hybrid support** for AI-based and traditional DA algorithms
 - 🔌 **Pluggable architecture**: swap decoders, models, and observation operators
 - 📈 **Integrated support** for ensemble-based flow error propagation
-- 🧠 **Learnable background error models** via VAE or GEN_BE-style approaches (See )
+- 🧠 **Learnable background error models** via VAE or GEN_BE-style approaches
 - 💡 Designed for **weather forecasting**, but extensible to other geophysical applications
 
 
