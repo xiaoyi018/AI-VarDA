@@ -1,6 +1,6 @@
 # AI-VarDA: A Unified Variational Data Assimilation Framework for AI and Traditional Methods
 
-This framework builds on our recent works, [FengWu-4DVar](https://openreview.net/forum?id=Y2WorV5ag6) and [VAE-Var](https://openreview.net/forum?id=utz99dx2RN), aiming to bridge traditional data assimilation techniques with modern deep generative modeling. **VAR-AI** is a modular and extensible Python-based framework that supports both classic variational methods (e.g., 3DVar, 4DVar, GEN_BE) and AI-driven approaches (e.g., VAE-Var, LoRA-EnVar). It offers a unified interface for integrating forecast models, background error representations, and observation operators — enabling flexible configuration, comparative experimentation, and reproducible research.
+This framework builds on our recent works, [FengWu-4DVar](https://openreview.net/forum?id=Y2WorV5ag6) and [VAE-Var](https://openreview.net/forum?id=utz99dx2RN), aiming to bridge traditional data assimilation techniques with modern deep generative modeling. **AI-VarDA** is a modular and extensible Python-based framework that supports both classic variational methods (e.g., 3DVar, 4DVar, GEN_BE) and AI-driven approaches (e.g., VAE-Var, LoRA-EnVar). It offers a unified interface for integrating forecast models, background error representations, and observation operators — enabling flexible configuration, comparative experimentation, and reproducible research.
 
 
 
