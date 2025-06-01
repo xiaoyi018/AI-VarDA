@@ -193,9 +193,9 @@ class era5_128x256(Dataset):
 
 
     def _get_meanstd(self):
-        with open('/mnt/petrelfs/xiaoyi/projects/varai_code/assimilation_framework/bgerr_learning/dataset/mean_std.json',mode='r') as f:
+        with open('/assimilation_framework/bgerr_learning/dataset/mean_std.json',mode='r') as f:
             multi_level_mean_std = json.load(f)
-        with open('/mnt/petrelfs/xiaoyi/projects/varai_code/assimilation_framework/bgerr_learning/dataset/mean_std_single.json',mode='r') as f:
+        with open('/assimilation_framework/bgerr_learning/dataset/mean_std_single.json',mode='r') as f:
             single_level_mean_std = json.load(f)
         self.mean_std = {}
         multi_level_mean_std['mean'].update(single_level_mean_std['mean'])

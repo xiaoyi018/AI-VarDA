@@ -13,7 +13,7 @@ forecast:
   forecast_model:
     name: "fengwu_hr_6h" # "fengwu_lr"
     config: "config/assimilation_loop/forecast_model/model_0.25degree_6h.yaml"
-    checkpoint: "/mnt/petrelfs/xiaoyi/projects/fengwu-hr/output/model/model_0.25degree/checkpoint_latest.pth"
+    checkpoint: "/path/to/checkpoint/model_0.25degree/checkpoint_latest.pth"
     mean_std: "checkpoints/model_mean_std.json"
   ensemble_gen:
     dynamic_member: 8 # 1~12
@@ -32,7 +32,7 @@ da_method:
   flow_model:
     type: "hr2hr" # "none" # "hr2hr"
     params: "config/assimilation_loop/forecast_model/model_0.25degree_1h.yaml"
-    checkpoint: "/mnt/petrelfs/xiaoyi/projects/fengwu-hr/output/model/world_size8-lgunet_alldata_13level_1hour_model_1inp/checkpoint_best.pth"
+    checkpoint: "/path/to/checkpoint/checkpoint_best.pth"
     model_mean_std: "checkpoints/model_mean_std.json"
     err_type: 1
     err_dim: 
@@ -57,7 +57,7 @@ save:
     ground_truth: false
     path_config: 
       type: "s3_bucket" # "local"
-      path: "cluster2:s3://global_data_assimilation_raw/xiaoyi"
+      path: "cluster2:s3://bucket_name"
 
   eval_results:
     metrics_list:

@@ -7,7 +7,7 @@ cuda: 0
 world_size: 32
 per_cpus: 4
 init_method: tcp://10.140.24.89:37758
-outdir: /mnt/petrelfs/chenkang/code/wpredict/IF_WKP/lgunet_rpft_float32_13level_1inp
+outdir: /path/to/output/dir
 cfg: ./configs/era5/lgunet_rpft_float32_13level_1inp.yaml
 desc: era5_lgunet_rpft_float32_13level_1inp
 rank: 0
@@ -152,7 +152,7 @@ model:
       # checkpoint_dir: cephnew:s3://weatherbench/checkpoint
       whether_save_checkpoint: true
       save_best: false
-      checkpoint_path: lgunet_all_float32_13level_1inp/world_size32-era5_lgunet_all_float32_13level_1inp/checkpoint_latest.pth
+      checkpoint_path: path/to/checkpoints/checkpoint_latest.pth
       replay_buff:
         inp_shape:
         - 69

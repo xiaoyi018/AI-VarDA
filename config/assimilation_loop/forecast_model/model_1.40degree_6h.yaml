@@ -5,8 +5,7 @@ cuda: 0
 world_size: 8
 per_cpus: 4
 init_method: tcp://10.140.24.122:33544
-outdir: /mnt/petrelfs/xiaoyi/projects/fengwu-lite/output/model
-tbdir: /mnt/petrelfs/xiaoyi/projects/fengwu-lite/runs
+outdir: path/to/output/dir
 cfg: ./configs/model.yaml
 desc: model-37years-stride6-circle
 rank: 0

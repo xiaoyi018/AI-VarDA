@@ -7,7 +7,7 @@ cuda: 0
 world_size: 8
 per_cpus: 4
 init_method: tcp://10.140.24.23:27515
-outdir: /mnt/petrelfs/chenkang/code/wpredict/IF_WKP/lgunet_alldata_13level_1hour_model
+outdir: /path/to/output/dir
 cfg: ./configs/era5/lgunet_alldata_13level_1hour_model.yaml
 desc: lgunet_alldata_13level_1hour_model_1inp
 rank: 0
@@ -149,12 +149,12 @@ model:
       weight_begin_index: 4
       weight_end_index: 17
       weight_number: 0.1
-      checkpoint_dir: era5:s3://weatherbench/checkpoint
+      checkpoint_dir: era5:s3://checkpoint
     constants_len: 0
 dataset:
   train:
     type: era5_npy_f32
-    data_dir: era5_new:s3://era5_np_float32
+    data_dir: era5:s3://era5_np_float32
     length: 2
     file_stride: 1
     sample_stride: 1
@@ -162,7 +162,7 @@ dataset:
     vnames: *id002
   test:
     type: era5_npy_f32
-    data_dir: era5_new:s3://era5_np_float32
+    data_dir: era5:s3://era5_np_float32
     length: 2
     file_stride: 1
     sample_stride: 1
